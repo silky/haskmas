@@ -1,7 +1,7 @@
 haskmas
 ==
 
-A haskell tree decoration written in Haskell. Happy Haskmas!
+A haskell-themed tree decoration written in haskell. Happy Haskmas!
 
 ![Haskmas in 2D](haskmas.png)
 
