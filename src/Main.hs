@@ -30,8 +30,8 @@ logo = union [
     , translate (  18, -1, 0) $ rotate3deg (0, 0,  16.2) longBar
 
     -- equals
-    , translate (  15, 10, 0) $ rect3R 0 (0,0,0) (24, 6, 10)
-    , translate (  13, 22, 0) $ rect3R 0 (0,0,0) (26, 6, 10)
+    , translate (  15, 10, 0) $ rect3R 0 (0,0,0) (24, 6, height)
+    , translate (  13, 22, 0) $ rect3R 0 (0,0,0) (26, 6, height)
     ]
       where
           bar     = rect3R 0 (0, 0, 0) (6, 24, height)
@@ -72,7 +72,7 @@ star2d = polygon [
 
 -- | Extrude to three dimensions, also rotate around
 --   so that it is facing the way we want.
-star = rotate3deg (0, 0, -90) $ extrudeR 0 star2d 10
+star = rotate3deg (0, 0, -90) $ extrudeR 0 star2d height
 
 main :: IO ()
 -- main = writeSTL 1 "haskmas.stl" tree
