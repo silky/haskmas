@@ -3,6 +3,10 @@ haskmas
 
 Happy Haskmas!
 
+![Haskmas in 2D](haskmas.png)
+
+[Haskmas in 3D](https://github.com/silky/haskmas/blob/master/haskmas.stl)
+
 Original Haskmass logo courtesty of [Lyndon](https://github.com/sordina).
 
 
