@@ -1,13 +1,16 @@
 haskmas
 ==
 
-Happy Haskmas!
+A haskell tree decoration written in Haskell. Happy Haskmas!
 
 ![Haskmas in 2D](haskmas.png)
 
-[Haskmas in 3D](https://github.com/silky/haskmas/blob/master/haskmas.stl)
+![Haskmas in 3D](haskmas_3d.png)
 
-Original Haskmass logo courtesty of [Lyndon](https://github.com/sordina).
+[(In online viewer in GitHub) Haskmas in 3D](https://github.com/silky/haskmas/blob/master/haskmas.stl)
+
+Original [Haskmass](http://www.meetup.com/Melbourne-Haskell-Users-Group/events/222203592/)
+logo courtesty of [Lyndon](https://github.com/sordina).
 
 
 usage/installation
