@@ -2,7 +2,7 @@ module Main where
 
 import Graphics.Implicit
 import Graphics.Implicit.Definitions
-import Graphics.Implicit.Primitives (rotate3)
+import Graphics.Implicit.Primitives  (rotate3)
 
 -- https://hackage.haskell.org/package/implicit-0.0.5/docs/Graphics-Implicit.html
 -- https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language
@@ -75,6 +75,7 @@ star2d = polygon [
 star = rotate3deg (0, 0, -90) $ extrudeR 0 star2d 10
 
 main :: IO ()
-main = writeSTL 1 "haskmas.stl" tree
+-- main = writeSTL 1 "haskmas.stl" tree
+main = writeSCAD3 1 "haskmas.scad" tree
 
 

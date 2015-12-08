@@ -1,0 +1,3 @@
+[submodule "ext/ImplicitCAD"]
+	path = ext/ImplicitCAD
+	url = git@github.com:silky/ImplicitCAD.git
