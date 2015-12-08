@@ -75,6 +75,6 @@ star2d = polygon [
 star = rotate3deg (0, 0, -90) $ extrudeR 0 star2d 10
 
 main :: IO ()
-main = writeSTL 1 "haskmass.stl" tree
+main = writeSTL 1 "haskmas.stl" tree
 
 
