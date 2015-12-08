@@ -22,7 +22,7 @@ logo = union [
     , translate (   0, 19, 0) $ rotate3deg (0, 0,  16.2) bar
     
     -- connecting bars.
-    , translate (  3, 10, 0) $ rect3R 0 (0,0,0) (3, 2, 3)
+    , translate (  1, 10, 0) $ rect3R 0 (0,0,0) (8, 2, 3)
     , translate (  3, 25, 0) $ rect3R 0 (0,0,0) (8, 2, 3)
     
     -- λ
