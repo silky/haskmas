@@ -13,12 +13,12 @@ Original Haskmass logo courtesty of [Lyndon](https://github.com/sordina).
 usage/installation
 ==
 
-1. Build/run with [stack](https://github.com/commercialhaskell/stack).
+- Build/run with [stack](https://github.com/commercialhaskell/stack).
 
 ````
 stack build
 stack exec haskmas
 ````
 
-2. Print on a 3D printer
-3. Put it somewhere
+- Print on a 3D printer
+- Put it somewhere
