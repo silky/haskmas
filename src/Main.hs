@@ -26,7 +26,7 @@ logo = union [
     , translate (  3, 25, 0) $ rect3R 0 (0,0,0) (8, 2, 3)
     
     -- λ
-    , translate (   4,  5, 0) $ rotate3deg (0, 0, -16.2) bar
+    , translate (   4,  0, 0) $ rotate3deg (0, 0, -16.2) bar
     , translate (  18, -1, 0) $ rotate3deg (0, 0,  16.2) longBar
 
     -- equals
