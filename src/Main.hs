@@ -9,7 +9,7 @@ import Graphics.Implicit.Primitives  (rotate3)
 
 data BaubleLocation = R | L
 
-height = 7.5
+height = 10
 
 -- | Rotate but specify degrees instead of radians.
 rotate3deg (x, y, z) = rotate3 rads
