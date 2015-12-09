@@ -21,5 +21,9 @@ stack build
 stack exec haskmas
 ````
 
+At the moment this outputs `haskmas.scad`, which you can feed into [OpenSCAD](http://www.openscad.org/) to get a rendering; from here you can export to STL.
+
+I'm not using [ImplicitCAD](https://github.com/colah/ImplicitCAD)s STL output because it's a bit [inefficient](https://github.com/colah/ImplicitCAD/pull/67) at the moment.
+
 - Print on a 3D printer
 - Put it somewhere
