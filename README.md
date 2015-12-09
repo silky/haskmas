@@ -3,7 +3,7 @@ haskmas
 
 A haskell-themed tree decoration written in haskell. Happy Haskmas!
 
-![Haskmas in 2D and 3D](haskmas_both.png)
+![Haskmas in 2D and 3D](haskmas_all.png)
 
 [(In online viewer in GitHub) Haskmas in 3D](https://github.com/silky/haskmas/blob/master/haskmas.stl)
 
@@ -27,3 +27,5 @@ I'm not using [ImplicitCAD](https://github.com/colah/ImplicitCAD)s STL output be
 
 - Print on a 3D printer
 - Put it somewhere
+
+![Haskmas tree decoration](on_tree.png)
