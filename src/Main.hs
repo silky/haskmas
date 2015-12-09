@@ -74,7 +74,7 @@ ntree k = finalObj
                  in (newPos, obj3 : xs)
       -- star
       (a,b,c)   = (40.5, 24.5, 0)
-      starScale = (1/(0.8^3)) * (dec^k)
+      starScale = dec^(k-3)
       posScale  = dec^k
       starObj   = translate (lx + (posScale * a), ly + (posScale * b), lz + (posScale * c))
                     $ scale (starScale, starScale, starScale) star
@@ -87,7 +87,7 @@ logoBauble loc =
          R -> union [logo, translate (14,  1, 4) bauble]
          L -> union [logo, translate (-8, 38, 4) bauble]
 
-bauble = sphere (4)
+bauble = sphere 4
 
 -- | Hand-drawn star in 2d.
 star2d :: SymbolicObj2
@@ -115,9 +115,9 @@ main :: IO ()
 -- main = writeSTL 1 "haskmas.stl" tree
 
 -- | "Classic" tree
-main = writeSCAD3 1 "haskmas.scad" tree
+-- main = writeSCAD3 1 "haskmas.scad" tree
 
 -- | Tree of arbitrary depth.
--- main = writeSCAD3 1 "haskmas.scad" (ntree 31)
+main = writeSCAD3 1 "haskmas.scad" (ntree 31)
 
 
