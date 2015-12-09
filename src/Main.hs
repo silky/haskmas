@@ -115,9 +115,9 @@ main :: IO ()
 -- main = writeSTL 1 "haskmas.stl" tree
 
 -- | "Classic" tree
--- main = writeSCAD3 1 "haskmas.scad" tree
+main = writeSCAD3 1 "haskmas.scad" tree
 
 -- | Tree of arbitrary depth.
-main = writeSCAD3 1 "haskmas.scad" (ntree 31)
+-- main = writeSCAD3 1 "haskmas.scad" (ntree 31)
 
 
