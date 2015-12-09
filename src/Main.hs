@@ -7,15 +7,20 @@ import Graphics.Implicit.Primitives  (rotate3)
 -- https://hackage.haskell.org/package/implicit-0.0.5/docs/Graphics-Implicit.html
 -- https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language
 
+data BaubleLocation = R | L
+
 height = 10
 
+-- | Rotate but specify degrees instead of radians.
 rotate3deg (x, y, z) = rotate3 rads
     where
         f x  = x * (pi/180)
         rads = (f x, f y, f z)
 
+
 -- | the typical haskell logo with some additional connectedness so it prints
 --   as a single object.
+logo :: SymbolicObj3
 logo = union [
     -- /\
       translate (-6.5,  0, 0) $ rotate3deg (0, 0, -16.2) bar
@@ -37,7 +42,8 @@ logo = union [
           bar     = rect3R 0 (0, 0, 0) (6, 24, height)
           longBar = rect3R 0 (0, 0, 0) (6, 44, height)
 
---
+
+tree :: SymbolicObj3
 tree = union [
     -- build the tree
       logoBauble R
@@ -48,7 +54,34 @@ tree = union [
     , translate (93, 18, 0) star
     ]
 
-data BaubleLocation = R | L
+
+-- | Build a tree of an arbitrary depth.
+ntree :: Integer -> SymbolicObj3
+ntree k = finalObj
+  where
+      dec     = 0.8
+      ratios  = 0 : [dec^j | j <- [0..(k-2)]]
+      -- build up logo structure
+      ((lx, ly, lz), objs) = foldl f ((0, 0, 0), []) (zip [0..(k-1)] ratios)
+      -- position of logos
+      (x,y,z) = (40, 4, 0)
+      f :: ((ℝ, ℝ, ℝ), [SymbolicObj3]) -> (Integer, Float) -> ((ℝ, ℝ, ℝ), [SymbolicObj3])
+      f ((x', y', z'), xs) (j, r) =
+                let newPos = (x' + r*x, y' + r*y, z' + r*z)
+                    s      = dec ^ j
+                    loc    = if (even j) then R else L
+                    obj3   = translate newPos $ scale (s, s, s) (logoBauble loc)
+                 in (newPos, obj3 : xs)
+      -- star
+      (a,b,c)   = (40.5, 24.5, 0)
+      starScale = (1/(0.8^3)) * (dec^k)
+      posScale  = dec^k
+      starObj   = translate (lx + (posScale * a), ly + (posScale * b), lz + (posScale * c))
+                    $ scale (starScale, starScale, starScale) star
+      finalObj = union (starObj : objs)
+
+
+logoBauble :: BaubleLocation -> SymbolicObj3
 logoBauble loc =
     case loc of
          R -> union [logo, translate (14,  1, 4) bauble]
@@ -57,6 +90,7 @@ logoBauble loc =
 bauble = sphere (4)
 
 -- | Hand-drawn star in 2d.
+star2d :: SymbolicObj2
 star2d = polygon [
       (   0,   8)
     , (   8,   2)
@@ -72,10 +106,18 @@ star2d = polygon [
 
 -- | Extrude to three dimensions, also rotate around
 --   so that it is facing the way we want.
+star :: SymbolicObj3
 star = rotate3deg (0, 0, -90) $ extrudeR 0 star2d height
 
 main :: IO ()
+-- | Using OpenSCAD to generate STL for now until https://github.com/colah/ImplicitCAD/pull/67 
+--   is fixed.
 -- main = writeSTL 1 "haskmas.stl" tree
+
+-- | "Classic" tree
 main = writeSCAD3 1 "haskmas.scad" tree
+
+-- | Tree of arbitrary depth.
+-- main = writeSCAD3 1 "haskmas.scad" (ntree 31)
 
 
