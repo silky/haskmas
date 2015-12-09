@@ -14,7 +14,11 @@ logo courtesty of [Lyndon](https://github.com/sordina).
 usage/installation
 ==
 
-- Build/run with [stack](https://github.com/commercialhaskell/stack).
+- Download directly from [Thingiverse](http://www.thingiverse.com/thing:1187442)
+
+or
+
+- Build/run with [stack](https://github.com/commercialhaskell/stack)
 
 ````
 stack build
