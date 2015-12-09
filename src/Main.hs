@@ -9,7 +9,7 @@ import Graphics.Implicit.Primitives  (rotate3)
 
 data BaubleLocation = R | L
 
-height = 10
+height = 7.5
 
 -- | Rotate but specify degrees instead of radians.
 rotate3deg (x, y, z) = rotate3 rads
@@ -51,7 +51,7 @@ tree = union [
     , translate (72, 5, 0) $ scale (0.64, 0.64, 0.64) (logoBauble L)
 
     -- put the star on top.
-    , translate (93, 18, 0) star
+    , translate (92, 17.5, 0) star
     ]
 
 
@@ -115,9 +115,9 @@ main :: IO ()
 -- main = writeSTL 1 "haskmas.stl" tree
 
 -- | "Classic" tree
-main = writeSCAD3 1 "haskmas.scad" tree
+main = writeSCAD3 1 "haskmas.scad" (rotate3deg (0,0,90) tree)
 
 -- | Tree of arbitrary depth.
--- main = writeSCAD3 1 "haskmas.scad" (ntree 31)
+-- main = writeSCAD3 1 "haskmas.scad" (ntree 200)
 
 
