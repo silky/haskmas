@@ -74,8 +74,8 @@ ntree k = finalObj
                  in (newPos, obj3 : xs)
       -- star
       (a,b,c)   = (40.5, 24.5, 0)
-      starScale = dec^(k-3)
-      posScale  = dec^k
+      starScale = dec ** (fromIntegral (k-3))
+      posScale  = dec ** (fromIntegral k)
       starObj   = translate (lx + (posScale * a), ly + (posScale * b), lz + (posScale * c))
                     $ scale (starScale, starScale, starScale) star
       finalObj = union (starObj : objs)
@@ -118,6 +118,6 @@ main :: IO ()
 main = writeSCAD3 1 "haskmas.scad" (rotate3deg (0,0,90) tree)
 
 -- | Tree of arbitrary depth.
--- main = writeSCAD3 1 "haskmas.scad" (ntree 200)
+-- main = writeSCAD3 1 "haskmas.scad" (ntree 30)
 
 
