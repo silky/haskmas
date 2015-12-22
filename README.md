@@ -3,6 +3,9 @@ haskmas
 
 A haskell-themed tree decoration written in haskell. Happy Haskmas!
 
+![Build status](https://travis-ci.org/silky/haskmas.svg)
+
+
 ![Haskmas in 2D and 3D](haskmas_all.png)
 
 [(In online viewer in GitHub) Haskmas in 3D](https://github.com/silky/haskmas/blob/master/haskmas.stl)
