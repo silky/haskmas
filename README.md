@@ -23,8 +23,23 @@ or
 - Build/run with [stack](https://github.com/commercialhaskell/stack)
 
 ````
-stack build
-stack exec haskmas
+> stack build
+> stack exec -- haskmas
+````
+
+Help
+
+````
+> stack exec -- haskmas --help
+Haskmas generates the Haskmas logo of arbitrary size.
+
+Usage: haskmas [-v|--version] [-n|--size N] [-c|--classic]
+
+Available options:
+  -h,--help                Show this help text
+  -v,--version             Display the version.
+  -n,--size N              The number of components of tree to generate.
+  -c,--classic             Output the "classic" tree (size will be ignored).
 ````
 
 At the moment this outputs `haskmas.scad`, which you can feed into [OpenSCAD](http://www.openscad.org/) to get a rendering; from here you can export to STL.
