@@ -1,13 +1,65 @@
 module Main where
-
-import Graphics.Implicit
-import Graphics.Implicit.Definitions
-import Graphics.Implicit.Primitives  (rotate3)
-
+-- References:
+-- 
 -- https://hackage.haskell.org/package/implicit-0.0.5/docs/Graphics-Implicit.html
 -- https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language
 
+import           Graphics.Implicit
+import           Graphics.Implicit.Definitions
+import           Graphics.Implicit.Primitives  (rotate3)
+import           Control.Monad                 (join)
+import           Options.Applicative
+import qualified Options.Applicative           as A
+import Paths_haskmas                           (version)
+import Data.Version                            (showVersion)
+
 data BaubleLocation = R | L
+
+
+main :: IO ()
+main = join $ execParser optsInfo
+
+optsInfo :: ParserInfo (IO ())
+optsInfo = info (helper <*> opts)
+      ( fullDesc
+     <> header   "Haskmas generates the Haskmas logo of arbitrary size.")
+
+opts :: Parser (IO ())
+opts = go <$> versionArg <*> sizeArg <*> classicTreeTypeArg
+
+sizeArg :: Parser Integer
+sizeArg = A.option auto
+    ( long    "size"
+   <> short   'n'
+   <> value    3
+   <> metavar "N"
+   <> help    "The number of components of tree to generate.")
+
+versionArg :: Parser Bool
+versionArg = A.switch
+    ( long   "version"
+   <> short  'v'
+   <> help   "Display the version."
+   )
+
+classicTreeTypeArg :: Parser Bool
+classicTreeTypeArg = A.switch
+    ( long   "classic"
+   <> short  'c'
+   <> help   "Output the \"classic\" tree (size will be ignored)."
+   )
+
+
+-- | Using OpenSCAD to generate STL for now until https://github.com/colah/ImplicitCAD/pull/67 
+--   is fixed.
+go :: Bool     -- display version
+   -> Integer  -- size
+   -> Bool     -- output "classic" tree
+   -> IO ()
+go True _ _    = putStrLn (showVersion version) 
+go _    _ True = writeSCAD3 1 "haskmas.scad" (rotate3deg (0,0,90) tree)
+go _    n _    = writeSCAD3 1 "haskmas.scad" (rotate3deg (0,0,90) (ntree n))
+
 
 height = 10
 
@@ -108,16 +160,4 @@ star2d = polygon [
 --   so that it is facing the way we want.
 star :: SymbolicObj3
 star = rotate3deg (0, 0, -90) $ extrudeR 0 star2d height
-
-main :: IO ()
--- | Using OpenSCAD to generate STL for now until https://github.com/colah/ImplicitCAD/pull/67 
---   is fixed.
--- main = writeSTL 1 "haskmas.stl" tree
-
--- | "Classic" tree
-main = writeSCAD3 1 "haskmas.scad" (rotate3deg (0,0,90) tree)
-
--- | Tree of arbitrary depth.
--- main = writeSCAD3 1 "haskmas.scad" (ntree 30)
-
 

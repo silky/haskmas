@@ -12,6 +12,20 @@ build_script:
 - stack setup --no-terminal > nul
 - stack build --only-snapshot --no-terminal
 - stack --local-bin-path . install haskmas
+# Set a magical environment variable
+- cmd: for /f %%i in ('stack exec -- haskmas -v') do set HASKMAS_VERSION=%%i
 
 artifacts:
 - path: haskmas.exe
+
+# Auto-deploy
+deploy:
+  - provider: GitHub
+    tag: 'haskmas-$(HASKMAS_VERSION)'
+    release: 'Release haskmas-$(HASKMAS_VERSION)'
+    auth_token:
+      secure: FZXhwa1ucQwyFtswv/XNUJkclAxoz4YGGu69dSOEEkwG7Rlh/Gho66SJtOUJ57kN
+    artifact: haskmas.exe
+    on:
+      branch: master
+
